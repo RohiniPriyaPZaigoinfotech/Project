@@ -18,7 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 /**** LARASNAP ROUTES START ****/
@@ -71,10 +74,17 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
         /** ROLE ROUTES **/	
 
          /** MANAGEMENT ROUTES **/
-         Route::group(['prefix' => 'management', 'exculde' => ['store.management']], function(){
+         Route::group(['prefix' => 'management', 'exculde' => ['store.management','list.management','edit.management','update.management','destroy.management']], function(){
             Route::get('/', [ManagementController::class, 'create'])->name('create.management');
-            Route::post('/', [ManagementController::class, 'store'])->name('store.management');            
+            Route::post('/', [ManagementController::class, 'store'])->name('store.management'); 
+            Route::get('/list',[ManagementController::class,'list'])->name('list.management'); 
+            Route::get('/edit/{id}',[ManagementController::class,'edit'])->name('edit.management');
+            Route::put('/update/{id}',[ManagementController::class,'update'])->name('update.management');
+            Route::get('/destroy/{id}',[ManagementController::class,'destroy'])->name('destroy.management');
+                       
          });
+         
+        
         /** MANAGEMENT ROUTES **/   
         
         /** PERMISSION ROUTES **/

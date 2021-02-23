@@ -3,7 +3,7 @@
 @section('content')
 <!-- Page Heading  Start-->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-   <h1 class="h3 mb-0 text-gray-800">Management </h1>
+   <h1 class="h3 mb-0 text-gray-800">Edit Form </h1>
 </div>
 <!-- Page Heading End-->				  
 <!-- Page Content Start-->				  
@@ -15,13 +15,14 @@
                <a href="{{route('list.management')}}" title="Back to Category List" class="btn btn-warning btn-sm"><i aria-hidden="true" class="fa fa-arrow-left"></i> Back to Management List
                </a> 
                <br> <br> 
-               <form method="POST" action="{{route('store.management')}}"  class="form-horizontal" autocomplete="off">
+               <form method="POST" action="{{route('update.management',$user['id'])}}"  class="form-horizontal" autocomplete="off">
                   @csrf
+                  @method('put')
                   <div class="row">
                      <div class="col-md-12">
                         <div class="form-group">
                            <label for="name" class="control-label">Name<small class="text-danger required">*</small></label> 
-                           <input name="name" type="text" id="name" class="form-control lower-case" value="{{ old('name') }}">
+                           <input name="name" type="text" id="name" class="form-control lower-case" value="{{old('name',$user['name'])}}">
                            @error('name')
                            <span class="text-danger">{{ $message }}</span>
                            @enderror 							
@@ -30,7 +31,7 @@
                      <div class="col-md-12">
                         <div class="form-group">
                            <label for="email" class="control-label">Email<small class="text-danger required">*</small></label> 
-                           <input name="email" type="email" id="email" class="form-control" value="{{ old('email') }}">
+                           <input name="email" type="email" id="email" class="form-control" value="{{old('email',$user['email'])}}">
                            @error('email')
                            <span class="text-danger">{{ $message }}</span>
                            @enderror 							
@@ -48,7 +49,7 @@
                      <div class="col-md-12">
                         <div class="form-group">
                            <label for="age" class="control-label">Age<small class="text-danger required">*</small></label> 
-                           <input name="age" type="number" id="age" class="form-control" value="{{ old('age') }}">
+                           <input name="age" type="number" id="age" class="form-control" value="{{old('age',$user['age'])}}">
                            @error('age')
                            <span class="text-danger">{{ $message }}</span>
                            @enderror 							
@@ -57,7 +58,7 @@
                      <div class="col-md-12">
                         <div class="form-group">
                            <label for="phoneNumber" class="control-label">PhoneNumber<small class="text-danger required">*</small></label> 
-                           <input name="phoneNumber" type="number" id="phoneNumber" class="form-control" value="{{ old('phoneNumber') }}">
+                           <input name="phoneNumber" type="number" id="phoneNumber" class="form-control" value="{{old('phoneNumber',$user['phoneNumber'])}}">
                            @error('phoneNumber')
                            <span class="text-danger">{{ $message }}</span>
                            @enderror 							
@@ -66,32 +67,12 @@
                      <div class="col-md-12">
                         <div class="form-group">
                            <label for="address" class="control-label">Address<small class="text-danger required">*</small></label> 
-                           <input name="address" type="text" id="address" class="form-control" value="{{ old('address') }}">
+                           <input name="address" type="text" id="address" class="form-control" value="{{old('address',$user['address'])}}">
                            @error('address')
                            <span class="text-danger">{{ $message }}</span>
                            @enderror 							
                         </div>
                      </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <label for="state" class="control-label">State<small class="text-danger required">*</small></label> 
-                           <input name="state" type="text" id="state" class="form-control" value="{{ old('state') }}">
-                           @error('state')
-                           <span class="text-danger">{{ $message }}</span>
-                           @enderror 							
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <div class="form-group">
-                           <label for="pincode" class="control-label">Pincode<small class="text-danger required">*</small></label> 
-                           <input name="pincode" type="number" id="pincode" class="form-control" value="{{ old('pincode') }}">
-                           @error('pincode')
-                           <span class="text-danger">{{ $message }}</span>
-                           @enderror 							
-                        </div>
-                     </div>
-                    
-                    
                   
                      <input type="hidden" name="position" value="">
                      @error('position')
@@ -101,7 +82,7 @@
                      <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                           <input type="submit" value="Save" class="btn btn-primary">
+                           <input type="submit" value="Update" title = "Update User" class="btn btn-primary">
                         </div>
                      </div>
                   </div>
